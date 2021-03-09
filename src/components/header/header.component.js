@@ -8,6 +8,7 @@ import Korona from './logo'
 
 const Header = ( { currentUser } ) => {
   // const logo = 
+  debugger
   return (
     <div className="header">
       <Link className="logo-container" to="/">
