@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 //import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase/firebase.utils";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import CartIcon from "../cart-icon/cart-icon.component";
 
 import "./header.styles.scss";
 import Korona from "./logo";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   console.log(currentUser !== null);
 
   return (
@@ -36,13 +38,16 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+     {hidden || <CartDropdown />}
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  hidden: state.cart.hidden
 })
 
 export default connect(mapStateToProps)(Header)
