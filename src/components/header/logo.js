@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Korona = ( { toggle } ) => {
+ const Korona = ( {toggle} ) => {
   if ( !toggle )
   {
     return (
