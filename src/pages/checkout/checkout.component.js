@@ -4,44 +4,44 @@ import { createStructuredSelector } from 'reselect'
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
 import { StripeCheckoutButton } from '../../components/stripe-button/stripe-button.component'
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors'
-import './checkout.styles.scss'
+import { CheckoutHeaderContainer, CheckoutPageContainer, HeaderBlockContainer, TotalContainer, WarningContainer } from './checkout.styles'
 
 
 
 const CheckOut = ({cartItems, total}) => {
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <HeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Romove</span>
-        </div>
-      </div>
+        </HeaderBlockContainer>
+      </CheckoutHeaderContainer>
       {cartItems.map( (item) => (
         <CheckoutItem key={item.id} cartItem={item} />
       ) )}
-      <div className="total">
+      <TotalContainer>
         <span>TOTAL: ${total}</span>
-      </div>
-      <div className="test-warning">
+      </TotalContainer>
+      <WarningContainer>
         *Please use the following test credit card for payment*
          <br />
           4242 4242 4242 4242 - 01/23 - 123
          
-      </div>
+      </WarningContainer>
       <StripeCheckoutButton price={total} />
-    </div>
+    </CheckoutPageContainer>
 
   )
 }

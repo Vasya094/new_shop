@@ -8,43 +8,42 @@ import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import CartIcon from "../cart-icon/cart-icon.component";
+import { HeaderContainer, LogoContainer, OptionDiv, OptionLink, OptionsContainer } from "./header.styles";
 
-import "./header.styles.scss";
 import Korona from "./logo";
 
 const Header = ({ currentUser, hidden }) => {
-  console.log(currentUser !== null);
 
   return (
-    <div className="header">
-      <Link className="logo-container" to="/">
+    <HeaderContainer>
+      <LogoContainer to="/">
         {/* <Logo className="logo" /> */}
         {currentUser ? (
           <Korona toggle={true}></Korona>
         ) : (
           <Korona toggle={false}></Korona>
         )}
-      </Link>
-      <div className="options">
+      </LogoContainer>
+      <OptionsContainer>
         <Link className="option" to="/shop">
           SHOP
         </Link>
-        <Link className="option" to="/shop">
+        <OptionLink to="/shop">
           CONTACT
-        </Link>
+        </OptionLink>
         {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
+          <OptionDiv onClick={() => auth.signOut()}>
             SIGN OUT
-          </div>
+          </OptionDiv>
         ) : (
-          <Link className="option" to="/signin">
+          <OptionLink to="/signin">
             SIGN IN
-          </Link>
+          </OptionLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
      {hidden || <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 
